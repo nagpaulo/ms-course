@@ -11,28 +11,25 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
-	
-	private static final String[] PUBLIC = { "/hr-oauth/oauth/token" };	
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+	private static final String[] PUBLIC = { "/hr-oauth/oauth/token" };
 	private static final String[] OPERATOR = { "/hr-worker/**" };
-	private static final String[] ADMIN = { "/hr-payroll/**", "/hr-user/**" };
-	
+	private static final String[] ADMIN = { "/hr-payroll/**", "/hr-user/**", "/actuator/**", "/hr-worker/actuator/**", "/hr-oauth/actuator/**" };
+
 	@Autowired
 	private JwtTokenStore tokenStore;
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.tokenStore(tokenStore);		
+		resources.tokenStore(tokenStore);
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.GET, OPERATOR).hasAnyRole("ADMIN","OPERATOR")
-		.antMatchers(ADMIN).hasRole("ADMIN")
-		.anyRequest().authenticated();
-		
+		http.authorizeRequests().antMatchers(PUBLIC).permitAll().antMatchers(HttpMethod.GET, OPERATOR)
+				.hasAnyRole("ADMIN", "OPERATOR").antMatchers(ADMIN).hasRole("ADMIN").anyRequest().authenticated();
+
 	}
-	
+
 }
