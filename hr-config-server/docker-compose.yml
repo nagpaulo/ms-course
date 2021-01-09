@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: "hr-config-server"
+    image: hr-config-server:v1
+    build: .
+    environment:
+      - TZ=America/Fortaleza
+      - GITHUB_USER=nagpaulo
+      - GITHUB_PASS= hr-config-server:v1
+    ports:
+      - "8888:8888"
+    networks:
+      - hr-net
+      - interna
+networks:
+  hr-net:
+    external: true
+  interna:
