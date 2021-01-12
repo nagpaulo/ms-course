@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.estudo.microservices.oauth</groupId>
-	<artifactId>hruser</artifactId>
+	<artifactId>hroauth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hr-oauth</name>
 	<description>Authorization Server</description>

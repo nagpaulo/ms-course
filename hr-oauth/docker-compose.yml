@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: "hr-oauth"
+    image: hr-oauth:v1
+    build: .
+    environment:
+      - TZ=America/Fortaleza
+    networks:
+      - hr-net
+      - interna
+networks:
+  hr-net:
+    external: true
+  interna:

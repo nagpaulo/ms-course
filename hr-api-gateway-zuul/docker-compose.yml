@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: "hr-api-gateway-zuul"
+    image: hr-api-gateway-zuul:v1
+    build: .
+    environment:
+      - TZ=America/Fortaleza
+    ports:
+      - "8765:8765"
+    networks:
+      - hr-net
+      - interna
+networks:
+  hr-net:
+    external: true
+  interna:

@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: "hr-eureka-server"
+    image: hr-eureka-server:v1
+    build: .
+    environment:
+      - TZ=America/Fortaleza
+    ports:
+      - "8761:8761"
+    networks:
+      - hr-net
+      - interna
+networks:
+  hr-net:
+    external: true
+  interna:
